@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>row.report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to top, rgb(24, 24, 24), black); /* Black with white at the bottom 20% */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .rainbow-text {
+            font-size: 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red, orange, yellow);
+            background-size: 500%; /* Increased size for smoother repetition */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-gradient 2s linear infinite; /* Faster gradient animation */
+            margin-bottom: 30px; /* Positioned higher above the buttons */
+        }
+        @keyframes rainbow-gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: pulse 2s infinite;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Increased hover glow intensity */
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Slightly increased glow intensity */
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Slightly increased glow intensity */
+            }
+            100% {
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Slightly increased glow intensity */
+            }
+        }
+        .twitter {
+            background-color: #3ed8ff;
+        }
+        .youtube {
+            background-color: #ff3333;
+        }
+        .steam {
+            background-color: #2b2da1;
+        }
+        .d2report {
+            background-color: #71d893;
+        }
+        .banner {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 500px;
+            overflow: hidden;
+            z-index: 0;
+            animation: banner-glow 6s linear infinite; /* Subtle white glowing effect for banners */
+        }
+        .banner.left {
+            left: 150px; /* Moved closer to the center */
+        }
+        .banner.right {
+            right: 150px; /* Moved closer to the center */
+        }
+        .banner-background {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 500px;
+            background: white; /* White background behind image reels */
+            z-index: -1; /* Positioned behind the banners */
+        }
+        .banner-background.left {
+            left: 150px;
+        }
+        .banner-background.right {
+            right: 150px;
+        }
+        @keyframes banner-glow {
+            0% {
+                box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+            }
+            50% {
+                box-shadow: 0 0 10px white, 0 0 15px white, 0 0 20px white;
+            }
+            100% {
+                box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+            }
+        }
+        .scroll {
+            display: flex;
+            flex-direction: column;
+            animation: scroll 60s linear infinite; /* Slower scrolling */
+        }
+        .banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        @keyframes scroll {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%); /* Scroll through all images */
+            }
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .banner,
+            .banner-background {
+                width: 200px; /* Shrink the width of the pillars */
+            }
+            .banner.left,
+            .banner-background.left {
+                left: 20px; /* Adjust the left position */
+            }
+            .banner.right,
+            .banner-background.right {
+                right: 20px; /* Adjust the right position */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Banner Background -->
+    <div class="banner-background left"></div>
+    <!-- Left Banner -->
+    <div class="banner left">
+        <div class="scroll">
+            <!-- First set of images -->
+            <img src="https://pbs.twimg.com/media/GnvEAquXMAAuHXT?format=png&name=4096x4096">
+            <img src="https://pbs.twimg.com/media/Glp3L0oWsAAEf_u?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GYmzqU3WgAAyiqC?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GVEp47sWgAAV65p?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GKNQoLnasAAfLuJ?format=jpg&name=360x360">
+            <img src="https://pbs.twimg.com/media/GTxs5c0W0AAELe0?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GSWBJZXXoAAaHFf?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/Gn8VOgfWEAAZLhv?format=jpg&name=small">
+            <img src="https://pbs.twimg.com/media/GRXf3OHWAAAZi3Q?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GQAdc4dXgAA-YAp?format=png&name=small">
+            <img src="https://x.com/i/status/1665054872662843396">
+            <!-- Duplicate set of images -->
+            <img src="https://pbs.twimg.com/media/GnvEAquXMAAuHXT?format=png&name=4096x4096">
+            <img src="https://pbs.twimg.com/media/Glp3L0oWsAAEf_u?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GYmzqU3WgAAyiqC?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GVEp47sWgAAV65p?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GKNQoLnasAAfLuJ?format=jpg&name=360x360">
+            <img src="https://pbs.twimg.com/media/GTxs5c0W0AAELe0?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GSWBJZXXoAAaHFf?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/Gn8VOgfWEAAZLhv?format=jpg&name=small">
+            <img src="https://pbs.twimg.com/media/GRXf3OHWAAAZi3Q?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GQAdc4dXgAA-YAp?format=png&name=small">
+            <img src="https://x.com/i/status/1665054872662843396">
+        </div>
+    </div>
+
+    <!-- Buttons and Rainbow Text -->
+    <div class="container">
+        <div class="rainbow-text">row.report</div>
+        <a href="https://x.com/Row004" class="button twitter">Twitter</a>
+        <a href="https://www.youtube.com/@row7" class="button youtube">YouTube</a>
+        <a href="https://steamcommunity.com/id/R0Wgod/" class="button steam">Steam</a>
+        <a href="https://destinytracker.com/destiny-2/profile/bungie/4611686018487940400/overview" class="button d2report">D2 Report</a>
+    </div>
+
+    <!-- Right Banner Background -->
+    <div class="banner-background right"></div>
+    <!-- Right Banner -->
+    <div class="banner right">
+        <div class="scroll">
+            <!-- First set of images -->
+            <img src="https://pbs.twimg.com/media/GnAWXeEXcAIzyRn?format=jpg&name=medium">
+            <img src="https://pbs.twimg.com/media/GepODA5XkAADzMm?format=png&name=4096x4096">
+            <img src="https://pbs.twimg.com/media/GW6TU7CXEAA2n9K?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GT3QyuOWwAEcO1L?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/Gni5PPAWoAA8w88?format=png&name=360x360">
+            <img src="https://pbs.twimg.com/media/GTSA4QVXAAAedXG?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GR7o5IjXkAAiciH?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GQYT8kqWAAAxsGO?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GKc-G3MWAAAbHfz?format=png&name=small">
+            <img src="https://x.com/i/status/1670485053133017094">
+            <img src="https://pbs.twimg.com/media/Glp8Si1W8AAN3gJ?format=jpg&name=small">
+            <!-- Duplicate set of images -->
+            <img src="https://pbs.twimg.com/media/GnAWXeEXcAIzyRn?format=jpg&name=medium">
+            <img src="https://pbs.twimg.com/media/GepODA5XkAADzMm?format=png&name=4096x4096">
+            <img src="https://pbs.twimg.com/media/GW6TU7CXEAA2n9K?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GT3QyuOWwAEcO1L?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/Gni5PPAWoAA8w88?format=png&name=360x360">
+            <img src="https://pbs.twimg.com/media/GTSA4QVXAAAedXG?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GR7o5IjXkAAiciH?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GQYT8kqWAAAxsGO?format=png&name=small">
+            <img src="https://pbs.twimg.com/media/GKc-G3MWAAAbHfz?format=png&name=small">
+            <img src="https://x.com/i/status/1670485053133017094">
+            <img src="https://pbs.twimg.com/media/Glp8Si1W8AAN3gJ?format=jpg&name=small">
+        </div>
+    </div>
+</body>
+</html>
