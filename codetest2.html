@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button-Based Single Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6a0dad, #b19cd9);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .home {
+            background-color: #ff5733;
+        }
+        .about {
+            background-color: #33c1ff;
+        }
+        .services {
+            background-color: #33ff57;
+        }
+        .contact {
+            background-color: #ffc133;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#home" class="button home">Home</a>
+        <a href="#about" class="button about">About</a>
+        <a href="#services" class="button services">Services</a>
+        <a href="#contact" class="button contact">Contact</a>
+    </div>
+</body>
+</html>
