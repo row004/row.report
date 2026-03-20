@@ -23,7 +23,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-image: url("WebsiteAsset2.png");
+        background-image: url("./WebsiteAsset2.png");
         background-repeat: repeat;
         background-size: 600px;
         background-position: 0 0;
@@ -59,11 +59,9 @@
         max-width: 1200px;
         margin: 40px auto 0 auto;
 
-        /* darker outer glow */
         filter: drop-shadow(0 0 55px rgba(0,0,0,1))
                 drop-shadow(0 0 110px rgba(0,0,0,0.9));
 
-        /* extremely soft fade */
         -webkit-mask-image: radial-gradient(circle, black 96%, rgba(0,0,0,0.3) 100%);
         mask-image: radial-gradient(circle, black 96%, rgba(0,0,0,0.3) 100%);
     }
@@ -102,13 +100,11 @@
     }
 
     .section-title {
-        margin: 40px 0 0 0; /* moved DOWN by 15px */
+        margin: 40px 0 0 0;
         font-size: 48px;
         font-weight: bold;
         color: white;
         letter-spacing: 4px;
-
-        /* soft glow */
         text-shadow: 0 0 14px rgba(255,255,255,0.25);
     }
 
@@ -117,7 +113,6 @@
         animation: smoothWave 1.8s ease-in-out infinite;
     }
 
-    /* stagger each letter for flowing motion */
     .section-title span:nth-child(1) { animation-delay: 0s; }
     .section-title span:nth-child(2) { animation-delay: 0.12s; }
     .section-title span:nth-child(3) { animation-delay: 0.24s; }
@@ -126,19 +121,18 @@
     .section-title span:nth-child(6) { animation-delay: 0.60s; }
     .section-title span:nth-child(7) { animation-delay: 0.72s; }
 
-    /* --- ASSET 3 WRAPPER (FADE APPLIED HERE) --- */
+    /* --- ASSET 3 WRAPPER --- */
     .gallery-wrapper {
         position: relative;
         margin-top: 50px;
-
         mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     }
 
-    /* --- ASSET 3 (OUTLINE + GRUNGE) --- */
+    /* --- ASSET 3 --- */
     .gallery-wall {
         padding: 40px 20px;
-        background-image: url("WebsiteAsset3.png");
+        background-image: url("./WebsiteAsset3.png");
         background-repeat: repeat;
         background-size: 300px;
         min-height: 200vh;
@@ -176,9 +170,20 @@
         background: #e8dcc2;
         box-shadow: 0 4px 12px rgba(0,0,0,0.6);
         display: block;
+
+        /* --- HOVER ANIMATION --- */
+        transition: transform 0.35s ease,
+                    box-shadow 0.35s ease,
+                    filter 0.35s ease;
     }
 
-    /* --- MODAL VIEWER --- */
+    .gallery-item img:hover {
+        transform: scale(1.04) translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.75);
+        filter: brightness(1.05);
+    }
+
+    /* --- MODAL --- */
     #modal {
         display: none;
         position: fixed;
@@ -204,12 +209,6 @@
         color: white;
         cursor: pointer;
     }
-
-    @media (max-width: 900px) {
-        .gallery-grid {
-            grid-template-columns: 1fr;
-        }
-    }
 </style>
 </head>
 
@@ -222,7 +221,7 @@
 
     <!-- ASSET 1 -->
     <div class="asset1-container">
-        <img src="WebsiteAsset1.gif" alt="Main Hub Image">
+        <img src="./WebsiteAsset1.gif" alt="Main Hub Image">
 
         <!-- HOTSPOTS -->
         <div id="hot1" class="hotspot"></div>
@@ -236,12 +235,12 @@
         <div id="hot9" class="hotspot"></div>
     </div>
 
-    <!-- WAVE TITLE (INDEPENDENT LETTERS) -->
+    <!-- TITLE -->
     <div class="section-title">
         <span>G</span><span>A</span><span>L</span><span>L</span><span>E</span><span>R</span><span>Y</span>
     </div>
 
-    <!-- ASSET 3 WRAPPER -->
+    <!-- GALLERY -->
     <div class="gallery-wrapper">
         <div class="gallery-wall">
             <div class="gallery-grid" id="gallery"></div>
@@ -277,8 +276,7 @@
     };
 
     Object.keys(hotspotLinks).forEach(id => {
-        const el = document.getElementById(id);
-        el.addEventListener("click", () => {
+        document.getElementById(id).addEventListener("click", () => {
             window.open(hotspotLinks[id], "_blank");
         });
     });
@@ -312,7 +310,7 @@
         item.className = "gallery-item";
 
         const img = document.createElement("img");
-        img.src = "Artworks/" + file;
+        img.src = "./Artworks/" + file;
 
         item.appendChild(img);
         gallery.appendChild(item);
