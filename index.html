@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Landing Page</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+        position: relative;
+        min-height: 300vh;
+    }
+
+    /* --- ASSET 2 BACKGROUND LAYER --- */
+    .background-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("WebsiteAsset2.png");
+        background-repeat: repeat;
+        background-size: 600px;
+        background-position: 0 0;
+        z-index: -10;
+        pointer-events: none;
+    }
+
+    .background-gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 800px;
+        background: linear-gradient(to bottom, transparent, black);
+        z-index: -5;
+        pointer-events: none;
+    }
+
+    /* --- MAIN CONTENT WRAPPER --- */
+    .content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 40px;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* --- ASSET 1 (EXTREMELY SOFT OUTER FADE + DARK GLOW) --- */
+    .asset1-container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        margin: 40px auto 0 auto;
+
+        /* darker outer glow */
+        filter: drop-shadow(0 0 55px rgba(0,0,0,1))
+                drop-shadow(0 0 110px rgba(0,0,0,0.9));
+
+        /* extremely soft fade */
+        -webkit-mask-image: radial-gradient(circle, black 96%, rgba(0,0,0,0.3) 100%);
+        mask-image: radial-gradient(circle, black 96%, rgba(0,0,0,0.3) 100%);
+    }
+
+    .asset1-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* --- HOTSPOT BUTTONS (TRANSPARENT) --- */
+    .hotspot {
+        position: absolute;
+        background: transparent;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    #hot1 { top: 24.5%; left: 8.7%; width: 105px; height: 50px; }
+    #hot2 { top: 30%; left: 8.7%; width: 105px; height: 50px; }
+    #hot3 { top: 27.5%; left: 17.5%; width: 105px; height: 50px; }
+
+    #hot4 { top: 33%; left: 17.5%; width: 105px; height: 50px; }
+    #hot5 { top: 35.5%; left: 41%; width: 95px; height: 50px; }
+    #hot6 { top: 45.8%; left: 53.5%; width: 130px; height: 75px; }
+
+    #hot7 { top: 15.5%; left: 66.1%; width: 50px; height: 153px; }
+    #hot8 { top: 39.5%; left: 78%; width: 120px; height: 75px; }
+    #hot9 { top: 45%; left: 34.3%; width: 20px; height: 20px; }
+
+    /* --- SMOOTH INDEPENDENT LETTER WAVE --- */
+    @keyframes smoothWave {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+
+    .section-title {
+        margin: 40px 0 0 0; /* moved DOWN by 15px */
+        font-size: 48px;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 4px;
+
+        /* soft glow */
+        text-shadow: 0 0 14px rgba(255,255,255,0.25);
+    }
+
+    .section-title span {
+        display: inline-block;
+        animation: smoothWave 1.8s ease-in-out infinite;
+    }
+
+    /* stagger each letter for flowing motion */
+    .section-title span:nth-child(1) { animation-delay: 0s; }
+    .section-title span:nth-child(2) { animation-delay: 0.12s; }
+    .section-title span:nth-child(3) { animation-delay: 0.24s; }
+    .section-title span:nth-child(4) { animation-delay: 0.36s; }
+    .section-title span:nth-child(5) { animation-delay: 0.48s; }
+    .section-title span:nth-child(6) { animation-delay: 0.60s; }
+    .section-title span:nth-child(7) { animation-delay: 0.72s; }
+
+    /* --- ASSET 3 WRAPPER (FADE APPLIED HERE) --- */
+    .gallery-wrapper {
+        position: relative;
+        margin-top: 50px;
+
+        mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+
+    /* --- ASSET 3 (OUTLINE + GRUNGE) --- */
+    .gallery-wall {
+        padding: 40px 20px;
+        background-image: url("WebsiteAsset3.png");
+        background-repeat: repeat;
+        background-size: 300px;
+        min-height: 200vh;
+        position: relative;
+        z-index: 5;
+
+        border: 6px solid #3a2f1f;
+
+        filter: contrast(1.1) brightness(0.95);
+        box-shadow:
+            0 0 40px rgba(0,0,0,0.6),
+            inset 0 0 60px rgba(0,0,0,0.7),
+            inset 0 0 120px rgba(0,0,0,0.5);
+    }
+
+    /* --- GALLERY GRID --- */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        padding: 40px;
+    }
+
+    .gallery-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        border-radius: 4px;
+        border: 6px solid #3a2f1f;
+        padding: 4px;
+        background: #e8dcc2;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        display: block;
+    }
+
+    /* --- MODAL VIEWER --- */
+    #modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    #modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+    }
+
+    #modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="background-layer"></div>
+<div class="background-gradient"></div>
+
+<div class="content">
+
+    <!-- ASSET 1 -->
+    <div class="asset1-container">
+        <img src="WebsiteAsset1.gif" alt="Main Hub Image">
+
+        <!-- HOTSPOTS -->
+        <div id="hot1" class="hotspot"></div>
+        <div id="hot2" class="hotspot"></div>
+        <div id="hot3" class="hotspot"></div>
+        <div id="hot4" class="hotspot"></div>
+        <div id="hot5" class="hotspot"></div>
+        <div id="hot6" class="hotspot"></div>
+        <div id="hot7" class="hotspot"></div>
+        <div id="hot8" class="hotspot"></div>
+        <div id="hot9" class="hotspot"></div>
+    </div>
+
+    <!-- WAVE TITLE (INDEPENDENT LETTERS) -->
+    <div class="section-title">
+        <span>G</span><span>A</span><span>L</span><span>L</span><span>E</span><span>R</span><span>Y</span>
+    </div>
+
+    <!-- ASSET 3 WRAPPER -->
+    <div class="gallery-wrapper">
+        <div class="gallery-wall">
+            <div class="gallery-grid" id="gallery"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal">
+    <span id="modal-close">&times;</span>
+    <img id="modal-img" src="">
+</div>
+
+<script>
+    /* PARALLAX */
+    window.addEventListener("scroll", () => {
+        const offset = window.scrollY * 0.5;
+        document.querySelector(".background-layer").style.backgroundPosition = `0px ${-offset}px`;
+    });
+
+    /* HOTSPOT LINKS */
+    const hotspotLinks = {
+        hot1: "https://x.com/Row004",
+        hot2: "https://www.youtube.com/@row004",
+        hot3: "https://www.roblox.com/users/332558165/profile",
+        hot4: "https://steamcommunity.com/id/row004/",
+        hot5: "https://pubg.report/players/account.aeaa0befd73c489a9fd0f90559190fd8",
+        hot6: "https://example.com",
+        hot7: "https://example.com",
+        hot8: "https://example.com",
+        hot9: "https://media.tenor.com/tEgNSKxk5DcAAAAj/beeg-yoshi-yoshi.gif"
+    };
+
+    Object.keys(hotspotLinks).forEach(id => {
+        const el = document.getElementById(id);
+        el.addEventListener("click", () => {
+            window.open(hotspotLinks[id], "_blank");
+        });
+    });
+
+    /* GALLERY IMAGES */
+    const images = [
+        "Cascade.png",
+        "rose look at my fucking claws.png",
+        "Infinite Quality Acheived.png",
+        "G4UhG4XW8AAke5V.jpg",
+        "Espurr Idea.png",
+        "Nepeta.png",
+        "Bec Blanco v2.png",
+        "Flax.png",
+        "Mega Dragonite.png",
+        "AngelBannerFull.png",
+        "ASTRID.png",
+        "HazelTexture.png",
+        "Nessus Glaving.png",
+        "Time.png",
+        "Shadow Vegabond Money Gang.gif",
+        "DARK.png",
+        "RowGOD(1.png",
+        "Destiny2ACB.png",
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    images.forEach(file => {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+
+        const img = document.createElement("img");
+        img.src = "Artworks/" + file;
+
+        item.appendChild(img);
+        gallery.appendChild(item);
+    });
+
+    /* MODAL */
+    document.addEventListener("click", e => {
+        if (e.target.closest(".gallery-item img")) {
+            document.getElementById("modal-img").src = e.target.src;
+            document.getElementById("modal").style.display = "flex";
+        }
+    });
+
+    document.getElementById("modal-close").onclick = () => {
+        document.getElementById("modal").style.display = "none";
+    };
+
+    document.getElementById("modal").onclick = (e) => {
+        if (e.target === e.currentTarget) {
+            document.getElementById("modal").style.display = "none";
+        }
+    };
+</script>
+
+</body>
+</html>
